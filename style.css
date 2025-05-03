@@ -1,0 +1,229 @@
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    padding: 2rem;
+  }
+  
+  /* Header */
+  header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  header h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+  }
+  
+  header p {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+  }
+  
+  /* Section */
+  section h2 {
+    color: #2c3e50;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #2980b9;
+    padding-bottom: 0.5rem;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  li {
+    background-color: #ffffff;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  strong {
+    color: #2980b9;
+  }
+  
+  /* Links */
+  a {
+    color: #2980b9;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Footer */
+  footer {
+    margin-top: 3rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    border-top: 1px solid #ddd;
+    padding-top: 1rem;
+  }
+
+  /* ==========================
+   Sophos Chatbot Styles
+   ========================== */
+#sophos-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  #sophos-toggle {
+    background-color: #2980b9;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+  
+  #sophos-chat {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    background-color: #fff;
+    color: #333;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 300px;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+  }
+  
+  #sophos-chat.show {
+    display: block;
+    opacity: 1;
+  }
+  
+  #sophos-log {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    padding-right: 5px;
+  }
+  
+  .message {
+    background-color: #f0f4f8;
+    border-radius: 8px;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+  
+  .message.sophos {
+    background-color: #e3f2fd;
+    border-left: 4px solid #2980b9;
+  }
+  
+  #sophos-buttons {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  #sophos-buttons button {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    border: none;
+    background-color: #2980b9;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #sophos-buttons button:hover {
+    background-color: #21618c;
+  }
+  
+  #sophos-chat a {
+    color: #2980b9;
+    text-decoration: underline;
+    font-weight: 500;
+  }
+  
+  #sophos-chat a:hover {
+    color: #21618c;
+  }
+  
+  /* Typing Dots */
+  #sophos-typing {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
+    color: #2980b9;
+    animation: pulse 1s infinite;
+    gap: 0.2rem;
+  }
+  
+  #sophos-typing.hidden {
+    display: none;
+  }
+  
+  @keyframes pulse {
+    0%   { opacity: 0.2; transform: translateY(0); }
+    50%  { opacity: 1; transform: translateY(-4px); }
+    100% { opacity: 0.2; transform: translateY(0); }
+  }
+  
+  /* Chat Input inside Bubble */
+  #sophos-input-area {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  #sophos-user-input {
+    flex: 1;
+    padding: 6px 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 0.85rem;
+  }
+  
+  #sophos-send {
+    padding: 6px 12px;
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #sophos-send:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  

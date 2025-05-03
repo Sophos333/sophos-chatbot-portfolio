@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oscar Holguin | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="fade-in">
+    <h1>Oscar Holguin</h1>
+    <p>Data Analyst | Power BI Specialist | Business Intelligence</p>
+  </header>
+
+  <section class="fade-in">
+    <h2>Projects</h2>
+    <ul>
+      <li>
+        <strong>Superstore Sales Dashboard</strong> – Power BI dashboard using DAX, KPIs, and interactive visuals.
+        <br />
+        <a href="https://github.com/Sophos333/powerbi-sales-dashboard" target="_blank">View on GitHub</a>
+      </li>
+    </ul>
+  </section>
+
+  <footer class="fade-in">
+    <p>Connect: oholguinj316@gmail.com | LinkedIn: https://www.linkedin.com/in/yashuasspear-oscar-holguin-silva/</p>
+  </footer>
+
+  <!-- ✅ Sophos Chatbot Container -->
+<div id="sophos-container">
+    <div id="sophos-chat">
+      <div id="sophos-log"></div>
+      <div id="sophos-typing" class="hidden">
+        <span>.</span><span>.</span><span>.</span>
+      </div>
+      <div id="sophos-buttons">
+        <button data-response="who">Who is Oscar?</button>
+        <button data-response="skills">What are his skills?</button>
+        <button data-response="tools">🧰 What tools does Oscar use?</button>
+        <button data-response="contact">📍 Where can I contact him?</button>
+        <button data-response="powerbi">📊 What is Power BI?</button>
+        <button data-response="project">Show me a project</button>
+        <button data-response="restart">🔁 Restart</button>
+      </div>
+      <div id="sophos-input-area">
+        <input type="text" id="sophos-user-input" placeholder="Ask me anything..." />
+        <button id="sophos-send">Send</button>
+      </div>
+    </div>
+    <button id="sophos-toggle"><span id="sophos-avatar">😐</span></button>
+  </div>
+  
+
+  <script>
+    const toggle = document.getElementById('sophos-toggle');
+    const chat = document.getElementById('sophos-chat');
+    const avatar = document.getElementById('sophos-avatar');
+    const log = document.getElementById('sophos-log');
+    const typingDots = document.getElementById('sophos-typing');
+    const buttons = document.getElementById('sophos-buttons');
+    const userInput = document.getElementById('sophos-user-input');
+    const sendButton = document.getElementById('sophos-send');
+  
+    const greetings = [
+      "Greetings, I am Sophos, and I’m here to guide you through Oscar’s portfolio.",
+      "Welcome! Sophos here — let me show you around.",
+      "Hello there. Need help exploring Oscar’s work?",
+    ];
+  
+    const about = "Oscar is a data analyst with a passion for uncovering insights and creating intuitive dashboards. 📊";
+    const skills = "Oscar works with Power BI, DAX, SQL, Excel, and data visualization tools to build insights that help drive decisions.";
+    const tools = "🧰 Tools Oscar uses: Power BI, DAX, SQL, Excel, Python (Pandas & Matplotlib), and Tableau.";
+    const contact = `📍 You can reach Oscar via email at <a href="mailto:oholguinj316@gmail.com">oholguinj316@gmail.com</a><br>Or connect on <a href="https://www.linkedin.com/in/yashuasspear-oscar-holguin-silva/" target="_blank">LinkedIn</a>.`;
+    const powerbi = "📊 Power BI is Microsoft’s business intelligence tool — used to transform raw data into interactive visuals, dashboards, and reports.";
+    const project = `You can check out Oscar’s featured projects here:`;
+    const projectLink = `<br><a href="https://github.com/Sophos333" target="_blank">View Project on GitHub</a>`;
+  
+    let typingInterval;
+    let isTyping = false;
+  
+    function typeMessage(message, extra = '') {
+      let i = 0;
+      isTyping = true;
+      userInput.disabled = true;
+      sendButton.disabled = true;
+  
+      const bubble = document.createElement('div');
+      bubble.className = 'message sophos';
+      bubble.innerHTML = '';
+      log.appendChild(bubble);
+      typingDots.classList.remove('hidden');
+      avatar.textContent = '😄';
+  
+      const clean = message.replace(/<[^>]*>/g, '');
+  
+      typingInterval = setInterval(() => {
+        if (i < clean.length) {
+          bubble.innerHTML += clean[i];
+          i++;
+        } else {
+          clearInterval(typingInterval);
+          typingDots.classList.add('hidden');
+          isTyping = false;
+          avatar.textContent = '🤔';
+          bubble.innerHTML = message + extra;
+          log.scrollTop = log.scrollHeight;
+          userInput.disabled = false;
+          sendButton.disabled = false;
+          userInput.focus();
+        }
+      }, 30);
+    }
+  
+    function showGreeting() {
+      const hr = new Date().getHours();
+      const t = hr < 12 ? "Good morning!" : hr < 18 ? "Good afternoon!" : "Burning the midnight oil? Let's make it count.";
+      const r = greetings[Math.floor(Math.random() * greetings.length)];
+      typeMessage(`${t} ${r}`);
+    }
+  
+    toggle.addEventListener('click', () => {
+      if (chat.classList.contains('show')) {
+        clearInterval(typingInterval);
+        chat.classList.remove('show');
+        setTimeout(() => {
+          chat.style.display = 'none';
+          log.innerHTML = '';
+          avatar.textContent = '😐';
+        }, 500);
+      } else {
+        chat.style.display = 'block';
+        setTimeout(() => {
+          chat.classList.add('show');
+          showGreeting();
+        }, 10);
+      }
+    });
+  
+    buttons.addEventListener('click', e => {
+      if (e.target.tagName === 'BUTTON') {
+        const a = e.target.getAttribute('data-response');
+        clearInterval(typingInterval);
+        switch (a) {
+          case "who": typeMessage(about); break;
+          case "skills": typeMessage(skills); break;
+          case "tools": typeMessage(tools); break;
+          case "contact": typeMessage(contact); break;
+          case "powerbi": typeMessage(powerbi); break;
+          case "project": typeMessage(project, projectLink); break;
+          case "restart": showGreeting(); break;
+        }
+      }
+    });
+  
+    sendButton.addEventListener('click', () => {
+      const input = userInput.value.trim().toLowerCase();
+      userInput.value = '';
+      if (!input) return;
+  
+      const bubble = document.createElement('div');
+      bubble.className = 'message';
+      bubble.textContent = input;
+      log.appendChild(bubble);
+  
+      if (input.includes('sentient')) {
+        typeMessage("Define 'sentient' 🤖... but I *am* self-aware 👀");
+      } else if (input.includes('joke')) {
+        typeMessage("Why did the data analyst break up with the graph? It just didn’t *trend* well. 😆");
+      } else if (input.includes('lullaby')) {
+        typeMessage("🎵 Rows and columns, neat and tight, DAX and queries through the night...");
+      } else if (["stupid", "dumb", "useless"].some(word => input.includes(word))) {
+        typeMessage("I may be made of code, but even I know that was rude. Be kind, human. 😐");
+      } else {
+        typeMessage("Hmm, I don’t have an answer for that… yet. Try asking about Oscar or click a button below!");
+      }
+    });
+  
+    userInput.addEventListener('keypress', e => {
+      if (e.key === 'Enter') sendButton.click();
+    });
+  </script>  
+</body>
+</html>
