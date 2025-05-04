@@ -69,6 +69,12 @@ const buttons = document.getElementById('sophos-buttons');
 const userInput = document.getElementById('sophos-user-input');
 const sendButton = document.getElementById('sophos-send');
 
+// 🔒 Sanitize input to prevent HTML injection
+function sanitize(str) {
+  return str.replace(/[<>&"'`]/g, "");
+}
+
+
 // 🎭 Custom greeting content
 const greetings = [
   "Need a tour? I'm your friendly data guide.",
@@ -180,9 +186,20 @@ buttons.addEventListener('click', e => {
 
 // ✅ Custom Easter Egg Input
 sendButton.addEventListener('click', () => {
-  const input = userInput.value.trim().toLowerCase();
-  userInput.value = '';
-  if (!input) return;
+    let input = sanitize(userInput.value.trim().toLowerCase());
+userInput.value = ''; // Clear the field
+
+if (!input) return;
+if (input.length > 200) {
+  typeMessage("Let's keep it short and sweet — try under 200 characters.");
+  return;
+}
+
+if (!input) return;
+if (input.length > 200) {
+  typeMessage("Let’s keep it short and sweet — try under 200 characters.");
+  return;
+}
 
   const bubble = document.createElement('div');
   bubble.className = 'message';
