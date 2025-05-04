@@ -9,7 +9,7 @@
 <body>
   <header class="fade-in">
     <h1>Oscar Holguin</h1>
-    <p>Data Analyst | Power BI Specialist | Business Intelligence</p>
+    <p>Web Architect | Data Analyst | Power BI Specialist | Business Intelligence</p>
   </header>
 
   <section class="fade-in">
@@ -183,6 +183,13 @@ buttons.addEventListener('click', e => {
     }
   }
 });
+
+// 🧼 Sanitize function: strips out any HTML tags to avoid script injection
+function sanitize(str) {
+  const temp = document.createElement('div');
+  temp.textContent = str;
+  return temp.innerHTML;
+}
 
 // ✅ Custom Easter Egg Input
 sendButton.addEventListener('click', () => {
