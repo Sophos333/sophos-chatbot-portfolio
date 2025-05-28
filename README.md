@@ -1,6 +1,6 @@
 # Sophos Chatbot Portfolio 🤖
 
-This is a personal interactive portfolio for Oscar Holguin, powered by a custom chatbot named **Sophos**.
+This is a personal interactive portfolio I created, powered by a custom chatbot named **Sophos**.
 
 ### 🌟 Features:
 - Interactive chat with preset topics & open-ended input
